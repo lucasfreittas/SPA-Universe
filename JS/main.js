@@ -1,9 +1,10 @@
 
 const links = {
-    "/": "/home/home.html",
-    "/home": "/home/home.html",
-    "/universe": "/universe/universe.html",
-    "/explorer": "/explorer/explorer.html",
+    "/index.html": "/home.html",
+    "/home": "/home.html",
+    "/universe": "/universe.html",
+    "/explorer": "/explorer.html",
+    "/idex": "/home.html"
 }
 
 window.getLink = () => {
@@ -21,16 +22,32 @@ window.changeLink = () => {
 
     
     fetch(routes)
-    .then(page => page.body())
+    .then(page => page.text())
     .then(html => {
         document.querySelector('#app').innerHTML = html
     })
 
-
     console.log(routes)
-    
   
 }
+
+window.home = () => {
+    window.history.pushState({}, "", links["/home.html"])
+    changeLink()
+    
+}
+
+window.universe = () => {
+
+    window.history.pushState({}, "", links["/universe.html"])
+    changeLink()
+    
+}
+
+window.home()
+
+
+
 
 
 
